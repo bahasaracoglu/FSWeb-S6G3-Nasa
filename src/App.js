@@ -19,6 +19,8 @@ function App() {
       });
   }, []);
 
+  if (!data) return <h3>Yükleniyor...</h3>;
+
   return (
     <div className="App">
       <h1>
