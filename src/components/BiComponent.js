@@ -34,8 +34,16 @@ export default function BiComponent(props) {
         />
         )
       </p>
+      {data.media_type === "image" && <img src={data.url} alt={data.title} />}
+      {data.media_type === "video" && (
+        <iframe
+          title={data.title}
+          width="420"
+          height="315"
+          src={data.url}
+        ></iframe>
+      )}
 
-      <img src={data.url} alt={data.title} />
       <p>{data.title}</p>
       <p>
         Image Credit & Copyright: <span>{data.copyright}</span>
