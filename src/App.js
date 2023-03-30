@@ -2,14 +2,22 @@ import React from "react";
 import "./App.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import BiComponent from "./components/BiComponent";
 
 function App() {
   const [data, setData] = useState();
+  const [datePicker, setDatePicker] = useState(
+    new Date("2022-08-21").toISOString().slice(0, 10)
+  );
+
   useEffect(() => {
     axios
-      .get(
-        "https://api.nasa.gov/planetary/apod?api_key=UlsVoK8kcwqrZsjMU3GBTYLF0xxcbp7DpgafkE0n"
-      )
+      .get("https://api.nasa.gov/planetary/apod", {
+        params: {
+          api_key: "UlsVoK8kcwqrZsjMU3GBTYLF0xxcbp7DpgafkE0n",
+          date: datePicker,
+        },
+      })
       .then(function (response) {
         setData(response.data);
         console.log(response);
@@ -17,34 +25,17 @@ function App() {
       .catch(function (error) {
         console.log(error);
       });
-  }, []);
+  }, [datePicker]);
 
   if (!data) return <h3>Yükleniyor...</h3>;
 
   return (
     <div className="App">
-      <h1>
-        Astronomy Photo Of The Day
-        <span role="img" aria-label="go!">
-          🚀
-        </span>
-      </h1>
-      <p>
-        Explore the mysteries of the universe! Each day, a unique image or
-        photograph of distant galaxies, stunning nebulas, and other celestial
-        wonders is highlighted, complemented by a brief description written by
-        an experienced astronomer.
-      </p>
-
-      <p>{data.date}</p>
-      <img src={data.url}></img>
-      <p>{data.title}</p>
-      <p>
-        Image Credit & Copyright: <span>{data.copyright}</span>
-      </p>
-      <p>
-        Explanation: <span>{data.explanation}</span>
-      </p>
+      <BiComponent
+        data={data}
+        dateChange={setDatePicker}
+        currentDate={datePicker}
+      />
     </div>
   );
 }

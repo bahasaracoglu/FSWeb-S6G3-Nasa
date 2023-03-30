@@ -1,3 +1,7 @@
+* {
+  background-color: #ecf2ff;
+}
+
 .App {
   text-align: center;
 }
@@ -35,4 +39,23 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.App p {
+  font-weight: bold;
+}
+
+.App p span {
+  font-weight: normal;
+}
+
+.App header p {
+  font-weight: normal;
+}
+
+.App h3 {
+  text-align: center;
+  justify-content: center;
+  font-weight: bold;
+  align-items: center;
 }
