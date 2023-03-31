@@ -4,6 +4,10 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import BiComponent from "./components/BiComponent";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { faShareNodes } from "@fortawesome/free-solid-svg-icons";
 
 function App() {
   const [data, setData] = useState();
@@ -30,13 +34,35 @@ function App() {
 
   if (!data) return <h3>Yükleniyor...</h3>;
 
+  // {data.media_type === "image" && <img src={data.url} alt={data.title} />}
+
   return (
     <div className="App">
-      <BiComponent
-        data={data}
-        dateChange={setDatePicker}
-        currentDate={datePicker}
-      />
+      <div>
+        <img
+          className="background_image"
+          style={{
+            backgroundImage: `url(${data.hdurl})`,
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+            backgroundAttachment: "fixed",
+            backgroundPosition: "center",
+          }}
+        />
+        <div className="container">
+          <nav>
+            <FontAwesomeIcon icon={faBars} style={{ color: "#ffffff" }} />
+            <FontAwesomeIcon icon={faSearch} style={{ color: "#ffffff" }} />
+            <h2>ASTRONOTE PICTURE OF THE DAY</h2>
+            <FontAwesomeIcon icon={faShareNodes} style={{ color: "#ffffff" }} />
+          </nav>
+          <BiComponent
+            data={data}
+            dateChange={setDatePicker}
+            currentDate={datePicker}
+          />
+        </div>
+      </div>
     </div>
   );
 }

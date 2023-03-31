@@ -8,21 +8,9 @@ export default function BiComponent(props) {
     dateChange(e.target.value);
   }
   return (
-    <>
-      <header>
-        <h1>
-          Astronomy Photo Of The Day
-          <span role="img" aria-label="go!">
-            🚀
-          </span>
-        </h1>
-        <p>
-          Explore the mysteries of the universe! Each day, a unique image or
-          photograph of distant galaxies, stunning nebulas, and other celestial
-          wonders is highlighted, complemented by a brief description written by
-          an experienced astronomer.
-        </p>
-      </header>
+    <div>
+      <h1>APOD</h1>
+
       <p>{data.date}</p>
       <p>
         (<label htmlFor="apodDate">See the Astronomy Photo of the:</label>
@@ -34,7 +22,7 @@ export default function BiComponent(props) {
         />
         )
       </p>
-      {data.media_type === "image" && <img src={data.url} alt={data.title} />}
+
       {data.media_type === "video" && (
         <iframe
           title={data.title}
@@ -43,7 +31,6 @@ export default function BiComponent(props) {
           src={data.url}
         ></iframe>
       )}
-
       <p>{data.title}</p>
       <p>
         Image Credit & Copyright: <span>{data.copyright}</span>
@@ -51,6 +38,6 @@ export default function BiComponent(props) {
       <p>
         Explanation: <span>{data.explanation}</span>
       </p>
-    </>
+    </div>
   );
 }
